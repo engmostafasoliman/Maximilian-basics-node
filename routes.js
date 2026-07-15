@@ -2,7 +2,7 @@ const fs = require("fs");
 const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method;
-if (url === "/") {
+    if (url === "/") {
         res.write("<html>");
         res.write("<head><title>Enter message </title></head>");
         res.write("<body><form action='/message' method='POST'><input type='text' name='message'><button type='submit'>Send</button></form></body>");
