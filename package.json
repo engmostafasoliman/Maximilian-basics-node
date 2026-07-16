@@ -1,0 +1,21 @@
+{
+  "name": "create_server",
+  "version": "1.0.0",
+  "description": "complete all nodejs course ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engmostafasoliman/Maximilian-basics-node.git"
+  },
+  "author": "\"mostafa soliman\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/engmostafasoliman/Maximilian-basics-node/issues"
+  },
+  "homepage": "https://github.com/engmostafasoliman/Maximilian-basics-node#readme"
+}
