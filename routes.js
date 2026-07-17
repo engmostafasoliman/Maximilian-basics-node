@@ -17,7 +17,7 @@ const requestHandler = (req, res) => {
         });
         req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
-            const message = parsedBody.split('=')[1];
+            const message = parsedBody.split('=') [1];
             fs.writeFileSync("message.txt", message);
         })
         res.statusCode = 302;
@@ -25,6 +25,7 @@ const requestHandler = (req, res) => {
         return res.end();   
     }
     res.statusCode = 200;
+    res.setHeader("Content-Type", "text/html");
     res.write("<html>");
     res.write("<head><title>My First Page</title></head>");
     res.write("<body><h1>Hello first node js server</h1></body>");
