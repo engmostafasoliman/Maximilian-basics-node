@@ -4,10 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Page not found</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .main-header {
+            background-color: #929b16;
+            padding: 1rem;
+        }
+        .main-header__item-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+        }
+        .main-header__nav {
+            display: flex;
+            align-items: center;
+        }
+        .main-header__item {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+        }
+            .main-header__item a {
+            text-decoration: none;
+            color: #e2dfdf;
+        }
+        .main-header__item a:hover,.main-header__item a:active {
+            color: #000; 
+        }
+        .main-text__item {
+            text-align: center;
+            margin: 1rem;
+        }
+        .main-text__item a {
+            text-decoration: none;
+            text-align: center;
+            
+            color: #e2dfdf;
+        }
+        .main-text__item a:hover,.main-text__item a:active {
+            color: #000; 
+        }
+    </style>
 </head>
 <body>
-    <h1>404 Page not found</h1>
-    <p>The page you are looking for does not exist.</p>
-    <a href="/">Go to home page</a>
+    <header class="main-header">
+        <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item"><a href="/">Shop</a></li>
+            <li class="main-header__item"><a href="/admin/add-product">Add Product</a></li>
+        </ul>
+    </nav>
+    </header>
+    <h1 class="main-text__item">404 Page not found</h1>
+    <p class="main-text__item">The page you are looking for does not exist.</p>
+    <a href="/" style="display: block;text-align: center;">Go to home page</a>
 </body>
 </html>
