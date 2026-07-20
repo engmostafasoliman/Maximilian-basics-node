@@ -5,7 +5,7 @@ const router= express.Router();
 router.get("/",(req, res, next) => {
     
     console.log("In the middleware from last middleware");
-   res.send("<h1>Hello shop</h1>");
+   res.status(200).send("<h1>Hello shop</h1>");
 
 });
 
