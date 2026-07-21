@@ -20,7 +20,10 @@
   "homepage": "https://github.com/engmostafasoliman/Maximilian-basics-node#readme",
   "dependencies": {
     "body-parser": "^2.3.0",
+    "ejs": "^6.0.1",
     "express": "^5.2.1",
-    "nodemon": "^3.1.14"
+    "express-handlebars": "^8.0.3",
+    "nodemon": "^3.1.14",
+    "pug": "^3.0.4"
   }
 }
