@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/404.css")
+        title 404 Page not found
+    body
+        header.main-header
+            nav.main-header__nav
+                ul.main-header__item-list
+                    li.main-header__item
+                        a(href="/") Shop
+                    li.main-header__item
+                        a(href="/admin/add-product") Add Product
+
+        main.error-page
+            p.error-page__code 404
+            h1.error-page__title Page not found
+            p.error-page__message The page you are looking for does not exist or may have been moved.
+            a.error-page__link(href="/") Go to home page
