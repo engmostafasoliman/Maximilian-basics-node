@@ -6,12 +6,12 @@ const products = [];
 router.get("/add-product",(req, res, next) => {
     
     console.log("In the middleware from add-product middleware");
-   res.status(200).render("add-product");
+   res.status(200).render("add-product",{pageTitle:"Add Product"});
 
 });
 router.post("/product",(req, res, next) => {
     console.log(req.body);
-    products.push({title:req.body.title});
+    products.push({title:req.body.title });
     res.redirect("/");
 });
 
