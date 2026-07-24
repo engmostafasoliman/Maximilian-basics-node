@@ -1,0 +1,23 @@
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css">
+
+
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <% if(prods.length > 0) { %>
+    <main class="main-header_body">
+        <h1>Product List</h1>
+        <% for(let i = 0; i < prods.length; i++) { %>
+        <img src="https://media.istockphoto.com/id/2060984408/photo/stack-of-colorful-books-education-background-back-to-school-book-hardback-colorful-books-on.jpg?s=612x612&w=0&k=20&c=S-a-AjcVaONddGxfcfbNckme8H7ujSllz-MjgmcKrVQ=" alt="<%= prods[i].title %>">
+        <h3><%= prods[i].title %></h3>
+        <p>Price: $19.99</p>
+        <p>Description: A book about <%= prods[i].title %></p>
+        <% } %>
+    </main>
+    <% } else { %>
+    <main class="main-header_body">
+        <h1>No Products Found</h1>
+    </main>
+    <% } %>
+    <%- include('includes/end.ejs') %>
