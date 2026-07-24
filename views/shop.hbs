@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{docTitle}}</title>    
-    <link rel="stylesheet" href="/css/main.css">
 
-
-</head>
-<body>
-    <header class="main-header">
-        <nav class="main-header__nav">
-        <ul class="main-header__item-list">
-            <li class="main-header__item"><a href="/">Shop</a></li>
-            <li class="main-header__item"><a href="/admin/add-product">Add Product</a></li>
-        </ul>
-    </nav>
-    </header>
     <main class="main-header_body">
         <h1>Product List</h1>
        <p>
@@ -24,9 +6,11 @@
     Existing Products:
     <ul>
       {{#each prods}}
-        <li>
+        <h3>
             <img src="https://media.istockphoto.com/id/2060984408/photo/stack-of-colorful-books-education-background-back-to-school-book-hardback-colorful-books-on.jpg?s=612x612&w=0&k=20&c=S-a-AjcVaONddGxfcfbNckme8H7ujSllz-MjgmcKrVQ=" alt="{{this.title}}">
-            <p>{{this.title}}</p></li>
+            <p>{{this.title}}</p></h3>
+            <p>Price: $19.99</p>
+            <p>Description: A book about {{this.title}}</p>
       {{/each}}
     </ul>
   {{else}}
@@ -34,5 +18,3 @@
   {{/if}}
     </p>
     </main>
-</body>
-</html>
