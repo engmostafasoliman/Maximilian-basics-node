@@ -12,7 +12,7 @@ exports.postAddProduct = (req, res, next) => {
     product.save();
     res.redirect("/");
 }
-
+// get products
 exports.getProducts = (req, res, next) => {
     Product.fetchAll((products) => {
         res.render("shop/products-list", { prods: products, pageTitle: "Shop", path: "/", });
