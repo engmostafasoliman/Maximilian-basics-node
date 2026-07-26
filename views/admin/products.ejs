@@ -16,10 +16,10 @@
                                 <h2>
                                     <%= prods[i].title %>
                                 </h2>
-                                <p>Price: $19.99</p>
-                                <p>Description: A book about <%= prods[i].title %>
+                                <p>Price: $<%= prods[i].price %></p>
+                                <p>Description: <%= prods[i].description %>
                                 </p>
-                                <img src="https://media.istockphoto.com/id/2060984408/photo/stack-of-colorful-books-education-background-back-to-school-book-hardback-colorful-books-on.jpg?s=612x612&w=0&k=20&c=S-a-AjcVaONddGxfcfbNckme8H7ujSllz-MjgmcKrVQ="
+                                <img src="<%= prods[i].imageUrl %>"
                                     alt="<%= prods[i].title %>">
                             </li>
                             <% } %>
