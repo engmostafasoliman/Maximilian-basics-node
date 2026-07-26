@@ -10,17 +10,19 @@
                 <h1>Your Products</h1>
 
                 <% if(prods.length> 0) { %>
-                    <ul class="product-list">
+                    <ul class="grid">
                         <% for(let i=0; i < prods.length; i++) { %>
                             <li class="product-item">
+                                <div class="card_image">
+                                    <img src="<%= prods[i].imageUrl %>" alt="<%= prods[i].title %>">
+                                </div>
                                 <h2>
                                     <%= prods[i].title %>
                                 </h2>
-                                <p>Price: $<%= prods[i].price %></p>
-                                <p>Description: <%= prods[i].description %>
+                                <p>
+                                    <%= prods[i].description %>
                                 </p>
-                                <img src="<%= prods[i].imageUrl %>"
-                                    alt="<%= prods[i].title %>">
+                                <p class="product-price">$<%= prods[i].price %></p>
                             </li>
                             <% } %>
                     </ul>

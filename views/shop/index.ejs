@@ -7,19 +7,23 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <% if(prods.length> 0) { %>
-                <main class="main-header_body">
+                <ul class="grid">
                     <h1>Product List</h1>
                     <% for(let i=0; i < prods.length; i++) { %>
-                        <img src="<%= prods[i].imageUrl %>" alt="<%= prods[i].title %>">
-                        <h3>
-                            <%= prods[i].title %>
-                        </h3>
-                        <p>Price: $ <%= prods[i].price %>
-                        </p>
-                        <p>Description: <%= prods[i].description %>
-                        </p>
+                        <li class="product-item">
+                            <div class="card_image">
+                                <img src="<%= prods[i].imageUrl %>" alt="<%= prods[i].title %>">
+                            </div>
+                            <h2>
+                                <%= prods[i].title %>
+                            </h2>
+                            <p>
+                                <%= prods[i].description %>
+                            </p>
+                            <p class="product-price">$<%= prods[i].price %></p>
+                        </li>
                         <% } %>
-                </main>
+                </ul>
                 <% } else { %>
                     <main class="main-header_body">
                         <h1>No Products Found</h1>
