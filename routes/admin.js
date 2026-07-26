@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const productsController = require("../controllers/products");
+const adminController = require("../controllers/admin");
 const path = require("path");
-
-router.get("/add-product", productsController.getAddProduct);
-router.post("/add-product", productsController.postAddProduct);
-router.get("/products", productsController.getProducts);
+//get admin products
+router.get("/products", adminController.getProducts);
+//get add product
+router.get("/add-product", adminController.getAddProduct);
+//post admin product
+router.post("/add-product", adminController.postAddProduct);
 module.exports = router;
 
