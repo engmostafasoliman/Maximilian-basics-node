@@ -2,10 +2,12 @@
     background-color: #929b16;
     padding: 1rem;
 }
+
 body {
     margin: 0;
     font-family: sans-serif;
 }
+
 .main-header__item-list {
     list-style: none;
     margin: 0;
@@ -13,10 +15,12 @@ body {
     display: flex;
     gap: 1rem;
 }
+
 .main-header__nav {
     display: flex;
     align-items: center;
 }
+
 .main-header__item {
     list-style: none;
     margin: 0;
@@ -24,17 +28,21 @@ body {
     display: flex;
     gap: 1rem;
 }
+
 .main-header__item a {
     text-decoration: none;
     color: #e2dfdf;
 }
+
 .main-header__item a:hover,
 .main-header__item a:active {
     color: #000;
-}   
+}
+
 main {
     padding: 1rem;
 }
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
@@ -46,6 +54,7 @@ main {
     border: 1px solid #929b16;
     border-radius: 14px;
 }
+
 .grid h1 {
     grid-column: 1 / -1;
     margin: 0 0 0.5rem 0;
@@ -54,6 +63,7 @@ main {
     color: #2b2b2b;
     letter-spacing: -0.01em;
 }
+
 .product-item {
     position: relative;
     display: flex;
@@ -61,15 +71,17 @@ main {
     background-color: #fff;
     border-radius: 14px;
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06),
-                0 8px 24px rgba(16, 24, 40, 0.06);
+        0 8px 24px rgba(16, 24, 40, 0.06);
     overflow: hidden;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
 .product-item:hover {
     transform: translateY(-6px);
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06),
-                0 18px 40px rgba(16, 24, 40, 0.16);
+        0 18px 40px rgba(16, 24, 40, 0.16);
 }
+
 .card_image {
     position: relative;
     width: 100%;
@@ -77,6 +89,7 @@ main {
     overflow: hidden;
     background: #f2f3ee;
 }
+
 .card_image img {
     width: 50%;
     height: 50%;
@@ -84,9 +97,11 @@ main {
     display: block;
     transition: transform 0.4s ease;
 }
+
 .product-item:hover .card_image img {
     transform: scale(1.06);
 }
+
 .product-item h2 {
     margin: 1.1rem 1.25rem 0.35rem 1.25rem;
     font-size: 1.2rem;
@@ -94,6 +109,7 @@ main {
     color: #1f2937;
     text-transform: capitalize;
 }
+
 .product-item p {
     margin: 0 1.25rem;
     color: #6b7280;
@@ -105,18 +121,21 @@ main {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
 .product-price {
     margin: 0.75rem 1.25rem 0 1.25rem;
     font-size: 1.15rem;
     font-weight: 700;
     color: #929b16;
 }
+
 .product-item__actions {
     display: flex;
     gap: 0.75rem;
     padding: 1.1rem 1.25rem 1.35rem 1.25rem;
     margin-top: 0.5rem;
 }
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -132,9 +151,11 @@ main {
     border-radius: 9px;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
+
 .btn:hover {
     background-color: #7a8113;
 }
+
 .btn:active {
     transform: scale(0.97);
 }
