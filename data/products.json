@@ -1,1 +1,8 @@
-[{"title":"mostafasoliman"},{"title":"Book"},{"title":""}]
+[
+    {
+        "title": "ImageTestBook",
+        "imageUrl": "https://pngimg.com/uploads/book/book_PNG51090.png",
+        "description": "Testing image fix",
+        "price": "12.00"
+    }
+]
