@@ -23,6 +23,13 @@
                                     <%= prods[i].description %>
                                 </p>
                                 <p class="product-price">$<%= prods[i].price %></p>
+                                <div class="card_actions">
+                                    <a href="/admin/edit-product/<%= prods[i].id %>" class="btn">Edit</a>
+                                    <form action="/admin/delete-product" method="POST">
+                                        <input type="hidden" name="productId" value="<%= prods[i].id %>">
+                                        <button class="btn" type="submit">Delete</button>
+                                    </form>
+                                </div>
                             </li>
                             <% } %>
                     </ul>
@@ -30,5 +37,6 @@
 
                         <p>No products found!</p>
                         <% } %>
+                        
             </main>
             <%- include('../includes/end.ejs') %>
