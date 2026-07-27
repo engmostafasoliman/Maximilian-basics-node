@@ -22,9 +22,16 @@
                                 <%= prods[i].description %>
                             </p>
                             <p class="product-price">$<%= prods[i].price %></p>
+                            <div class="card_actions">
+                                <form action="add-to-cart" method="POST">
+                                    <button class="btn" type="submit">Add to Cart</button>
+                                </form>
+                            </div>
                         </li>
                         <% } %>
+                        
                 </ul>
+                
                 <% } else { %>
                     <main class="main-header_body">
                         <h1>No Products Found</h1>
