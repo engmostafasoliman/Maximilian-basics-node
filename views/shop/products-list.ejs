@@ -27,6 +27,7 @@
                                 <a href="/products/<%= prods[i].id %>" class="btn">Details</a>
                                 <form action="add-to-cart" method="POST">
                                     <button class="btn" type="submit">Add to Cart</button>
+                                    <input type="hidden" name="productId" value="<%= prods[i].id %>">
                                 </form>
                             </div>
                         </li>
