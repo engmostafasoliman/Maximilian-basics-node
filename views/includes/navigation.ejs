@@ -11,9 +11,10 @@
                     class="<%= path === '/orders' ? 'active' : '' %>">Orders</a></li>
             <li class="main-header__item"><a href="/admin/products"
                     class="<%= path === '/admin/products' ? 'active' : '' %>">Admin Products</a></li>
-            <li class="main-header__item"><a href="/admin/add-product"
+            <li class="main-header__item"><a href="/admin/add-product?edit=false"
                     class="<%= path === '/admin/add-product' ? 'active' : '' %>">Add Product</a></li>
-
+            <li class="main-header__item"><a href="/admin/edit-product/001?edit=true"
+                    class="<%= path === '/admin/edit-product' ? 'active' : '' %>">Edit Product</a></li>
 
         </ul>
     </nav>
