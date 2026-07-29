@@ -26,7 +26,27 @@ exports.getIndex = (req, res, next) => {
 }
 //get cart
 exports.getCart = (req, res, next) => {
-    res.render("shop/cart", { pageTitle: "Cart", path: "/cart", });
+    Cart.getCart((cart)=>{
+    
+    Product.fetchAll((products)=>{
+        const cartProducts = [];
+
+            for(product of products){
+                const cartProductData = cart.products.find(p=>p.id===product.id);
+                if(cartProductData){
+                    cartProducts.push({productData :product,qty:cartProductData.qty});
+                    
+               
+            }
+            
+        
+        }
+        res.render("shop/cart", { pageTitle: "Cart", path: "/cart", products:cartProducts});
+
+    });
+       
+
+    })
 }
 //get checkout
 exports.getCheckout = (req, res, next) => {
