@@ -93,7 +93,8 @@ module.exports = class Cart {
             });
         });
 
-    }    
+       
+    }  
     
 
 }
