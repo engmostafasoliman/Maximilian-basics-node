@@ -1,6 +1,17 @@
 const fs = require("fs");
 const path = require("path");
 const p = path.join(path.dirname(process.mainModule.filename), "data", "cart.json");
+
+const getCartFromFile = (cb) => {
+    fs.readFile(p, (err, fileContent) => {
+        if (err) {
+            cb([]);
+        }
+        else {
+            cb(JSON.parse(fileContent));
+        }
+    });
+}
 module.exports = class Cart {
     constructor() {
         this.products = [];
@@ -60,5 +71,28 @@ module.exports = class Cart {
             });
         });
     }
+    static deleteProduct(id,price){
+        fs.readFile(p,(err,fileContent)=>{
+            if(err){
+                return;
+            }
+
+            const updatedCart = JSON.parse(fileContent);
+            const product = updatedCart.products.find(p=>p.id===id);
+            if(!product){
+                // product isn't in the cart, nothing to remove
+                console.log("product not found in cart");
+                return;
+            }
+            const productQty = product.qty;
+            updatedCart.totalPrice = updatedCart.totalPrice - price*productQty;
+            updatedCart.products = updatedCart.products.filter(p=>p.id!==id);
+            fs.writeFile(p, JSON.stringify(updatedCart), (err) => {
+                console.log(err);
+            });
+        });
+
+    }
+    
 
 }
