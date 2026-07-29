@@ -8,7 +8,7 @@ router.get("/checkout", shopController.getCheckout);
 router.get("/orders", shopController.getOrders);
 router.get("/products/:productId", shopController.getProduct);
 router.post("/cart", shopController.postCart);
-
+router.post("/cart-delete-item",shopController.postCartDeleteItem);
 
 
 module.exports = router;
