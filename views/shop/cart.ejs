@@ -1,13 +1,36 @@
 <%- include('../includes/head.ejs') %>
 
-
-
     </head>
 
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main>
                 <h1>Your Cart</h1>
-                <p>No products in cart!</p>
+                <% if(products.length> 0) {  %>
+                    <ul class="grid">
+                        <% products.forEach(product=> { %>
+                            <li class="product-item">
+                                
+                                <h2>
+                                    <%= product.productData.title %>
+                                </h2>
+                                <div class="card_image">
+                                    <img src="<%= product.productData.imageUrl %>" alt="<%= product.productData.title %>">
+                                </div>
+                                <div class="card_actions">
+                                    <p>Quantity: <%= product.qty %></p>
+                                    <a href="/admin/edit-product/<%= product.productData.id %>?edit=true" class="btn">Edit</a>
+                                    <form action="/admin/delete-product" method="POST">
+                                        <input type="hidden" name="productId" value="<%= product.productData.id %>">
+                                        <button class="btn" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } else { %>
+
+                        <p>No products found!</p>
+                        <% } %>
             </main>
             <%- include('../includes/end.ejs') %>
