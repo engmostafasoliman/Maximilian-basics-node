@@ -6,6 +6,7 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const path = require("path");
 const errorController = require("./controllers/errors");
+const db = require("./util/database");
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,"public")));
 //app.engine("hbs",expressHbs({layoutsDir:"views/layouts/",defaultLayout:"main-layout",extname:"hbs"}));
@@ -19,5 +20,10 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 app.listen(3001); 
+db.execute("SELECT * FROM products").then((result) => {
+    console.log(result);
+}).catch((err) => {
+    console.log(err);
+});
 module.exports = app;
 
