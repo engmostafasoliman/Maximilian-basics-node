@@ -18,6 +18,7 @@
                                     <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
                                 </div>
                                 <div class="card_actions">
+                                    
                                     <p>Quantity: <%= product.cartItem.quantity %></p>
                                     <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
                                     <form action="/cart-delete-item" method="POST">
