@@ -10,6 +10,8 @@ const Product = require("./models/products");
 const User = require("./models/user");
 const Cart = require("./models/cart");
 const CartItem = require("./models/cat-item");
+const Order = require("./models/order");
+const OrderItem = require("./models/order-item");
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,"public")));
 
@@ -33,6 +35,10 @@ Cart.belongsTo(User);
 User.hasOne(Cart);
 Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
+Product.belongsToMany(Order, { through: OrderItem });
 
 
 sequelize.sync().then((result)=>{
