@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../util/database");
 const OrderItem = sequelize.define(
-    "oderItem",
+    "orderItem",
     {
         id:{
             type:Sequelize.INTEGER,
