@@ -14,8 +14,7 @@
                                 <h2>
                                     <%= order.id  %>
                                 </h2>
-                                <p>Total Price: <%= order.totalPrice %></p>
-                                <p>Status: <%= order.status %></p>
+                                
                                 <ul>
                                     <% order.products.forEach(product=> { %>
                                         <li>
@@ -26,6 +25,7 @@
                             </li>
                             <% }) %>
                     </ul>
+                    
                     <% } else { %>
 
                         <p>No products found!</p>
