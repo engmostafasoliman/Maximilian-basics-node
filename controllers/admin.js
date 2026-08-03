@@ -10,7 +10,7 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageurl;
     const price = req.body.price;
     const description = req.body.description;
-    Product.create({
+    req.user.createProduct({
         title:title,
         imageUrl:imageUrl,
         price:price,
@@ -36,7 +36,8 @@ exports.postEditProduct = (req, res, next) => {
     const updatedImageUrl = req.body.imageurl;
     const updatedPrice = req.body.price;
     const updatedDescription = req.body.description;
-    Product.findByPk(prodId).then((product) => {
+    req.user.getProducts({where:{id:prodId}}).then((products) => {
+        const product = products[0];
         product.title = updatedTitle;
         product.imageUrl = updatedImageUrl;
         product.price = updatedPrice;
@@ -74,7 +75,10 @@ exports.getEditProduct = (req, res, next) => {
 }
 exports.postDeleteProduct = (req, res, next) => {
     const prodId = req.body.productId;
-    Product.destroy({where:{id:prodId}}).then(() => {
+    req.user.getProducts({where:{id:prodId}}).then((products) => {
+        const product = products[0];
+        product.destroy();
+    }).then(() => {
         console.log("deleted");
         res.redirect("/admin/products");
     }).catch((err) => {
