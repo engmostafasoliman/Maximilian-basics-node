@@ -5,7 +5,7 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const path = require("path");
 const errorController = require("./controllers/errors");
-const sequelize = require("./util/database");
+const mongoConnect = require("./util/database");
 const Product = require("./models/products");
 const User = require("./models/user");
 const Cart = require("./models/cart");
@@ -29,40 +29,44 @@ app.use((req,res,next)=>{
 app.use("/admin",adminRoutes);
 app.use(shopRoutes);
 app.use(errorController.get404);
-Product.belongsTo(User,{constraints:true,onDelete:'CASCADE'});
-User.hasMany(Product);
-Cart.belongsTo(User);
-User.hasOne(Cart);
-Cart.belongsToMany(Product, { through: CartItem });
-Product.belongsToMany(Cart, { through: CartItem });
-Order.belongsTo(User);
-User.hasMany(Order);
-Order.belongsToMany(Product, { through: OrderItem });
-Product.belongsToMany(Order, { through: OrderItem });
-
-
-sequelize.sync().then((result)=>{
-    // console.log(result); 
-    return User.findByPk(1);
- }).then((user)=>{
-    if(!user){
-        return User.create({name:"Mostafa Soliman",email:"developer@easytouchuae.ae",password:"123456"});
-    }
-    return user;
- }).then((user)=>{
-    user.getCart().then((cart)=>{
-        if(!cart){
-            return user.createCart();
-        }
-        return cart;
-    }).then((cart)=>{
-        console.log("cart is : ",cart);
-    });
-    console.log("user is : ",user);
+mongoConnect((client)=>{
+    console.log(client);
     app.listen(3001); 
- }).catch((err)=>{
-    console.log(err);
- }); 
+});
+// Product.belongsTo(User,{constraints:true,onDelete:'CASCADE'});
+// User.hasMany(Product);
+// Cart.belongsTo(User);
+// User.hasOne(Cart);
+// Cart.belongsToMany(Product, { through: CartItem });
+// Product.belongsToMany(Cart, { through: CartItem });
+// Order.belongsTo(User);
+// User.hasMany(Order);
+// Order.belongsToMany(Product, { through: OrderItem });
+// Product.belongsToMany(Order, { through: OrderItem });
+
+
+// sequelize.sync().then((result)=>{
+//     // console.log(result); 
+//     return User.findByPk(1);
+//  }).then((user)=>{
+//     if(!user){
+//         return User.create({name:"Mostafa Soliman",email:"developer@easytouchuae.ae",password:"123456"});
+//     }
+//     return user;
+//  }).then((user)=>{
+//     user.getCart().then((cart)=>{
+//         if(!cart){
+//             return user.createCart();
+//         }
+//         return cart;
+//     }).then((cart)=>{
+//         console.log("cart is : ",cart);
+//     });
+//     console.log("user is : ",user);
+//    
+//  }).catch((err)=>{
+//     console.log(err);
+//  }); 
 
 
 
