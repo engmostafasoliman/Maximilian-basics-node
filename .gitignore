@@ -11,6 +11,8 @@ yarn-error.log*
 # Environment / secrets
 .env
 .env.*
+*.env
+atlas-credentials.env
 !.env.example
 
 # OS files
