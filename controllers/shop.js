@@ -1,7 +1,7 @@
 
 const Product = require("../models/products");
 const Order = require("../models/order");
-
+const { ObjectId } = require("mongodb");
 
 // get products 
 exports.getProducts = (req, res, next) => {
@@ -16,8 +16,9 @@ exports.getProducts = (req, res, next) => {
 //get product
 exports.getProduct = (req, res, next) => {
     const prodId = req.params.productId;
-    console.log(prodId);
-    Product.findByPk(prodId).then((product) => {
+    const id = new ObjectId(prodId);
+    console.log(id);
+    Product.findById(id).then((product) => {
         console.log(" product ",product);
           res.render("shop/product-details", { product: product, pageTitle: product.title, path: "/products", });
     }).catch((err) => {
