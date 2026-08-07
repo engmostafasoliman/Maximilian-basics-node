@@ -5,7 +5,8 @@ const Order = require("../models/order");
 
 // get products 
 exports.getProducts = (req, res, next) => {
-    Product.findAll().then((products) => {
+
+    Product.fetchAll().then((products) => {
              res.render("shop/products-list", { prods: products, pageTitle: "Shop", path: "/", });
 
     }).catch((err) => {
@@ -25,7 +26,7 @@ exports.getProduct = (req, res, next) => {
 }
 //get index 
 exports.getIndex = (req, res, next) => {
-    Product.findAll().then((products) => {
+    Product.fetchAll().then((products) => {
       res.render("shop/index", { prods: products, pageTitle: "Shop", path: "/", });
     }).catch((err) => {
         console.log(err);
