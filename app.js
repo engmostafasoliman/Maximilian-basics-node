@@ -20,7 +20,7 @@ app.set("view engine","ejs");
 app.set("views","views");
 
 app.use((req,res,next)=>{
-    User.findById("689c88c78601970018777035").then((user)=>{
+    User.findById("6a7bfdded0c8da5892f0ca58").then((user)=>{
         console.log("user",user);
         req.user = user;
         next();
