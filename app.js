@@ -21,6 +21,7 @@ app.set("views","views");
 
 app.use((req,res,next)=>{
     User.findById("689c88c78601970018777035").then((user)=>{
+        console.log("user",user);
         req.user = user;
         next();
     }).catch((err)=>{

@@ -11,10 +11,10 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageurl;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new Product(title,imageUrl,price,description);
+    const product = new Product(title,imageUrl,price,description,null,req.user._id);
     product.save().then((result) => {
         console.log("created");
-        res.redirect("/admin/products");
+        res.redirect("/admin/products"); 
     }).catch((err) => {
         console.log(err);
     });
@@ -34,7 +34,7 @@ exports.postEditProduct = (req, res, next) => {
     const updatedImageUrl = req.body.imageurl;
     const updatedPrice = req.body.price;
     const updatedDescription = req.body.description;
-    const product = new Product(updatedTitle,updatedImageUrl,updatedPrice,updatedDescription , new ObjectId(prodId));
+    const product = new Product(updatedTitle,updatedImageUrl,updatedPrice,updatedDescription ,prodId);
     product.save().then(() => {
         console.log("updated");
         res.redirect("/admin/products");
