@@ -32,7 +32,7 @@ exports.getIndex = (req, res, next) => {
     }).catch((err) => {
         console.log(err);
     });
-      
+
 }
 //get cart
 exports.getCart = (req, res, next) => {
