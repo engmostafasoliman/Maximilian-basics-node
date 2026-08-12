@@ -8,7 +8,7 @@ const errorController = require("./controllers/errors");
 const mongoConnect = require("./util/database").mongoClient;
 const { MongoClient } = require("mongodb");
 // const Product = require("./models/products");
-// const User = require("./models/user");
+const User = require("./models/user");
 // const Cart = require("./models/cart");
 // const CartItem = require("./models/cat-item");
 // const Order = require("./models/order");
@@ -26,7 +26,6 @@ app.use((req,res,next)=>{
     }).catch((err)=>{
         console.log(err);
     });
-    next();
 });
 app.use("/admin",adminRoutes);
 app.use(shopRoutes);
