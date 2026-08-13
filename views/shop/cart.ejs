@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="card_actions">
                                     
-                                    <p>Quantity: <%= product.cartItem.quantity %></p>
+                                    <p>Quantity: <%= product.quantity %></p>
                                     <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
                                     <form action="/cart-delete-item" method="POST">
                                         <input type="hidden" name="productId" value="<%= product.id %>">
