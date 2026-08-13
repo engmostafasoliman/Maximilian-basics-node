@@ -83,39 +83,3 @@ exports.postDeleteProduct = (req, res, next) => {
         });
     }
     
-// }
-// exports.getEditProduct = (req, res, next) => {
-//     const editMode = req.query.edit;
-//     if(!editMode){
-//         return res.redirect("/");
-//     }
-//     const prodId = req.params.productId;
-//     if(!prodId){
-//         return res.redirect("/");
-//     }
-
-//     Product.findByPk(prodId).then((product) => {
-//         res.render("admin/edit-product",
-//              { product: product,
-//              pageTitle: "Edit Product",
-//              path: "/admin/edit-product",
-//             editing : editMode
-//          });
-//     }).catch((err) => {
-//         console.log(err);
-//     });
-// }
-// exports.postDeleteProduct = (req, res, next) => {
-//     const prodId = req.body.productId;
-//     req.user.getProducts({where:{id:prodId}}).then((products) => {
-//         const product = products[0];
-//         product.destroy();
-//     }).then(() => {
-//         console.log("deleted");
-//         res.redirect("/admin/products");
-//     }).catch((err) => {
-//         console.log(err);
-//     });
-// }
-
-
