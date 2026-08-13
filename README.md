@@ -1,67 +1,68 @@
-Do you want me to add this README directly to the repository, or just give you a ready-to-copy README text here? Below is a polished, copyable README you can paste into README.md.
+# create_server
 
-```markdown name=README.md url=https://github.com/engmostafasoliman/Maximilian-basics-node
-# Maximilian-basics-node
-
-basics node js section
-
-A small learning/demo Node.js project demonstrating server-rendered pages with EJS templates and simple front-end styling. Intended as examples and exercises for people learning Node + Express + EJS.
+A learning e-commerce app from Maximilian Schwarzmüller's Node.js course. Server-rendered
+shop with an admin area for managing products, currently mid-migration from Sequelize/MySQL
+to the MongoDB native driver (MongoDB Atlas).
 
 ## Features
-- Server-side rendering with EJS templates
-- Simple Express routing
-- Static assets (CSS/JS/images) served from a public folder
-- Minimal example structure suitable for learning and modification
+- Server-side rendering with EJS templates and shared partials
+- Express routing split into shop routes and admin routes (`/admin`)
+- Product management (add / edit / delete) backed by MongoDB
+- Per-user cart stored on the user document
+- Static assets served from `public/`
 
 ## Stack
-- Languages: EJS (templates), JavaScript (Node), CSS
-- Runtime: Node.js (Express)
-- Example dependencies: express, ejs, nodemon (dev)
+- Runtime: Node.js + Express 5
+- Views: EJS
+- Database: MongoDB (native `mongodb` driver, Atlas cluster)
+- Dev tooling: nodemon
+- Legacy (being phased out): Sequelize + mysql2
 
 ## Quick start
 
-1. Clone the repo
-   ```bash
-   git clone https://github.com/engmostafasoliman/Maximilian-basics-node.git
-   cd Maximilian-basics-node
-   ```
-
-2. Install dependencies
+1. Install dependencies
    ```bash
    npm install
    ```
 
-3. Run in development
+2. Configure the database
+   - The MongoDB connection lives in `util/database.js`.
+   - Secrets belong in `atlas-credentials.env`, which is gitignored — it is **not** committed.
+   - Make sure your current IP is on the Atlas **Network Access** allowlist, or the TLS
+     handshake will fail (`SSL alert number 80`).
+
+3. Run
    ```bash
-   npm run dev
+   npm start          # nodemon app.js (auto-restarts on changes)
    # or
-   npm start
+   npm run start-server   # node app.js
    ```
-   Open http://localhost:3000 (or the port shown in your start script).
+   The server listens on **http://localhost:3001**.
 
-> If package.json uses different scripts or a different port, update the commands above accordingly.
-
-## Project layout (top-level)
+## Project layout
 ```
-app.js / server.js   # application entry (starts Express)
-routes/              # route handlers (or defined in app.js)
-views/               # EJS templates and partials
-public/              # static assets: css/, js/, images/
-package.json         # dependencies & scripts
-README.md            # this file
+app.js               # entry point: middleware, route mounting, DB connect + listen
+routes/              # admin.js, shop.js route definitions
+controllers/         # admin.js, shop.js, errors.js request handlers
+models/              # products.js, user.js, order.js (MongoDB models)
+util/database.js     # MongoClient connect + getDb helper
+views/               # EJS templates (shop/, admin/, includes/)
+public/              # static css / js / images
 ```
 
 ## How it fits together
-The Express server (app.js/server.js) mounts route handlers which render EJS templates from views/. Static assets in public/ are served directly. Templates use partials for layout (header/footer) so pages stay DRY.
+`app.js` connects to MongoDB first, then starts the server. A middleware loads the current
+user on every request and attaches it as `req.user` (a `User` instance carrying `_id` and
+`cart`). Shop routes render the storefront; `/admin` routes handle product CRUD. Models wrap
+MongoDB collection calls (`insertOne`, `updateOne`, `findOne`, `find().toArray()`) and use
+`ObjectId` for lookups.
 
-## Contributing
-Small exercises only — open issues or PRs to add examples, fix typos, or improve explanations.
+## Migration status
+- ✅ Product model, admin CRUD, shop listing/detail — on MongoDB
+- ✅ User lookup, `req.user`, add-to-cart — on MongoDB
+- 🚧 Cart line-item shape, orders, and checkout — still partly Sequelize-based
 
-## License
-Add a license file (e.g., MIT) if you want to make reuse terms explicit.
-```
-
-If you want me to commit this README.md into engmostafasoliman/Maximilian-basics-node, confirm:
-- Yes — commit this content to the repository (I will use the repository default branch).
-- Or provide a target branch name.
-If you confirm, I'll attempt to write the file into the repo. If I don't have permission, I’ll tell you the error and provide the exact steps/patch you can apply locally.
+## Notes
+- MongoDB documents use `_id` (an `ObjectId`), not `id` — templates and forms reference
+  `product._id`.
+- This is course/practice code, not production-ready.
