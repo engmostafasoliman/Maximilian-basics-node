@@ -2,11 +2,12 @@ const getDb = require("../util/database").getDb;
 const ObjectId = require("mongodb").ObjectId;
 class User {
     constructor(
-        username,email,
+        username,email,cart,id
     ){
         this.name = username;
         this.email = email;
-        
+        this.cart = cart;
+        this._id = id;
     }
     save(){
         const db =getDb;
@@ -19,13 +20,28 @@ class User {
     static findById(id){
         const db = getDb();
         return db.collection("users").findOne({_id: new ObjectId(id)}).then((user) => {
-            console.log(user);
             return user;
         }).catch((err) => {
             console.log(err);
         });
     }
-    
+    addToCart(product){
+        const cartProduct = {items : [{productId:product._id,quantity:1}]};
+        const db = getDb();
+        return db.collection("users").updateOne({_id : this._id},{$set:{cart:cartProduct}}).then((result) => {
+            return result;
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+    getCart(){
+        const db = getDb();
+        return db.collection("users").findOne({_id: new ObjectId(this._id)}).then((user) => {
+            return user.cart;
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 }
 module.exports = User;
 
