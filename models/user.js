@@ -26,9 +26,19 @@ class User {
         });
     }
     addToCart(product){
-        const cartProduct = {items : [{productId:product._id,quantity:1}]};
+        const cartProductIndex = this.cart.items.findIndex(cp => cp.productId === product._id);
+        let newQuantity = 1;
+        let updatedCart = {items : [{productId:product._id,quantity:1}]};
+        if(cartProductIndex >= 0){
+            newQuantity = this.cart.items[cartProductIndex].quantity + 1;
+            updatedCart = {items : [{productId:product._id,quantity:newQuantity}]};
+        }else {
+            updatedCartItems.push({productId:product._id,quantity:newQuantity});
+        }
+        const updatedCartItems = [...this.cart.items];
+        updatedCartItems[cartProductIndex].quantity = newQuantity;
         const db = getDb();
-        return db.collection("users").updateOne({_id : this._id},{$set:{cart:cartProduct}}).then((result) => {
+        return db.collection("users").updateOne({_id : this._id},{$set:{cart:updatedCart}}).then((result) => {
             return result;
         }).catch((err) => {
             console.log(err);
