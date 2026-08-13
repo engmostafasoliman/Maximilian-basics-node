@@ -8,7 +8,7 @@ const errorController = require("./controllers/errors");
 const mongoConnect = require("./util/database").mongoClient;
 const { MongoClient } = require("mongodb");
 // const Product = require("./models/products");
-// const User = require("./models/user");
+const User = require("./models/user");
 // const Cart = require("./models/cart");
 // const CartItem = require("./models/cat-item");
 // const Order = require("./models/order");
@@ -20,13 +20,12 @@ app.set("view engine","ejs");
 app.set("views","views");
 
 app.use((req,res,next)=>{
-    // User.findByPk(1).then((user)=>{
-    //     req.user = user;
-    //     next();
-    // }).catch((err)=>{
-    //     console.log(err);
-    // });
-    next();
+    User.findById("6a7bfdded0c8da5892f0ca58").then((user)=>{
+        req.user = user;
+        next();
+    }).catch((err)=>{
+        console.log(err);
+    });
 });
 app.use("/admin",adminRoutes);
 app.use(shopRoutes);

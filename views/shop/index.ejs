@@ -22,10 +22,10 @@
                             </p>
                             <p class="product-price">$<%= prods[i].price %></p>
                             <div class="card_actions">
-                                <a href="/products/<%= prods[i].id %>" class="btn">Details</a>
+                                <a href="/products/<%= prods[i]._id %>" class="btn">Details</a>
                                 <form action="/cart" method="POST">
                                     <button class="btn" type="submit">Add to Cart</button>
-                                    <input type="hidden" name="productId" value="<%= prods[i].id %>">
+                                    <input type="hidden" name="productId" value="<%= prods[i]._id %>">
                                 </form>
                             </div>
                             
