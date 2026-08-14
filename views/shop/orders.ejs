@@ -1,34 +1,46 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/orders.css">
 
     </head>
 
     <body>
         <%- include('../includes/navigation.ejs') %>
-            <main>
+            <main class="orders">
                 <h1>Your Orders</h1>
-                <% if(orders.length > 0) {  %>
-                    <ul class="grid">
-                        <% orders.forEach(order=> { %>
-                            <li class="product-item">
-                                <h2>
-                                    <%= order.id  %>
-                                </h2>
-                                
-                                <ul>
-                                    <% order.products.forEach(product=> { %>
-                                        <li>
-                                            <%= product.title %> - <%= product.orderItem.quantity %>
-                                        </li>
-                                        <% }) %>
-                                </ul>
-                            </li>
-                            <% }) %>
-                    </ul>
-                    
-                    <% } else { %>
-
-                        <p>No products found!</p>
-                        <% } %>
+                <% if(orders.length > 0) { %>
+                    <% orders.forEach(order=> { %>
+                        <div class="order">
+                            <div class="order__header">
+                                <div>
+                                    <span class="order__label">Order</span>
+                                    <span class="order__id">#<%= order._id %></span>
+                                </div>
+                                <% if(order.date) { %>
+                                    <span class="order__date">
+                                        <%= new Date(order.date).toLocaleString() %>
+                                    </span>
+                                <% } %>
+                            </div>
+                            <ul class="order__items">
+                                <% let total = 0; %>
+                                <% order.items.forEach(item=> { %>
+                                    <% const line = Number(item.price) * item.quantity; %>
+                                    <% total += line; %>
+                                    <li class="order__item">
+                                        <span class="order__item-title"><%= item.title %></span>
+                                        <span class="order__item-qty">x <%= item.quantity %></span>
+                                        <span class="order__item-price">$<%= line.toFixed(2) %></span>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                            <div class="order__total">
+                                <span>Total</span>
+                                <span>$<%= total.toFixed(2) %></span>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <h2 class="orders__empty">You have no orders yet.</h2>
+                <% } %>
             </main>
-                        <%- include('../includes/end.ejs') %>
+            <%- include('../includes/end.ejs') %>
