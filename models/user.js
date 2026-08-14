@@ -64,6 +64,32 @@ class User {
             console.log(err);
         });
     }
+addOrder(){
+    const db = getDb();
+    return this.getCart().then((products)=>{
+        const order = {items:products,user:{_id:new ObjectId(this._id),name:this.name},date:new Date()};
+        return db.collection("orders").insertOne(order).then((result) => {
+            this.cart = {items:[]};
+            return db.collection("users").updateOne({_id : new ObjectId(this._id)},{$set:{cart:this.cart}}).then((result) => {
+                return result;
+            }).catch((err) => {
+                console.log(err);
+            });
+        }).catch((err) => {
+            console.log(err);
+        });
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+getOrders(){
+    const db = getDb();
+    return db.collection("orders").find({'user._id': new ObjectId(this._id)}).toArray().then((orders) => {
+        return orders;
+    }).catch((err) => {
+        console.log(err);
+    });
+}
 }
 module.exports = User;
 
