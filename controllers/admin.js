@@ -11,7 +11,7 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageurl;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new Product({title :title ,imageUrl:imageUrl,price:price,description:description,});
+    const product = new Product({title :title ,imageUrl:imageUrl,price:price,description:description,userId:req.user});
     product.save().then((result) => {
         console.log("created");
         res.redirect("/admin/products"); 
@@ -22,7 +22,7 @@ exports.postAddProduct = (req, res, next) => {
 
 
 exports.getProducts = (req, res, next) => {
-    Product.find().then((products) => {
+    Product.find().select("title imageUrl price description -_id").populate("userId","name email").then((products) => {
         res.render("admin/products", { prods: products, pageTitle: "Admin Products", path: "/admin/products", });
     }).catch((err) => {
         console.log(err);
