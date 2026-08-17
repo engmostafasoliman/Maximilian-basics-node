@@ -7,7 +7,7 @@ const { ObjectId } = require("mongodb");
 // get products 
 exports.getProducts = (req, res, next) => {
 
-    Product.fetchAll().then((products) => {
+    Product.find().then((products) => {
              res.render("shop/products-list", { prods: products, pageTitle: "Shop", path: "/", });
 
     }).catch((err) => {
@@ -17,9 +17,7 @@ exports.getProducts = (req, res, next) => {
 //get product
 exports.getProduct = (req, res, next) => {
     const prodId = req.params.productId;
-    const id = new ObjectId(prodId);
-    console.log(id);
-    Product.findById(id).then((product) => {
+    Product.findById(prodId).then((product) => {
         console.log(" product ",product);
           res.render("shop/product-details", { product: product, pageTitle: product.title, path: "/products", });
     }).catch((err) => {
@@ -28,7 +26,7 @@ exports.getProduct = (req, res, next) => {
 }
 //get index 
 exports.getIndex = (req, res, next) => {
-    Product.fetchAll().then((products) => {
+    Product.find().then((products) => {
       res.render("shop/index", { prods: products, pageTitle: "Shop", path: "/", });
     }).catch((err) => {
         console.log(err);
