@@ -1,5 +1,4 @@
 
-const ObjectId = require("mongodb").ObjectId;
 const Product = require("../models/products");
 exports.getAddProduct = (req, res, next) => {
     res.status(200).render("admin/edit-product", { pageTitle: "Add Product", path: "/admin/add-product",editing:false});
@@ -11,7 +10,7 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageurl;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new Product({title :title ,imageUrl:imageUrl,price:price,description:description,});
+    const product = new Product({title :title ,imageUrl:imageUrl,price:price,description:description,userId:req.user});
     product.save().then((result) => {
         console.log("created");
         res.redirect("/admin/products"); 
@@ -22,7 +21,7 @@ exports.postAddProduct = (req, res, next) => {
 
 
 exports.getProducts = (req, res, next) => {
-    Product.find().then((products) => {
+    Product.find().select("title imageUrl price description").populate("userId","name email").then((products) => {
         res.render("admin/products", { prods: products, pageTitle: "Admin Products", path: "/admin/products", });
     }).catch((err) => {
         console.log(err);
@@ -34,6 +33,7 @@ exports.postEditProduct = (req, res, next) => {
     const updatedImageUrl = req.body.imageurl;
     const updatedPrice = req.body.price;
     const updatedDescription = req.body.description;
+    
     Product.findById(prodId).then((product) => {
         product.title = updatedTitle;
         product.imageUrl = updatedImageUrl;
@@ -44,15 +44,18 @@ exports.postEditProduct = (req, res, next) => {
         res.redirect("/admin/products");
     }).catch((err) => {
         console.log(err);
+        
     });
 }
 exports.postDeleteProduct = (req, res, next) => {
     const prodId = req.body.productId;
+    
     Product.findByIdAndDelete(prodId).then((product) => {
         console.log("deleted");
         res.redirect("/admin/products");
     }).catch((err) => {
         console.log(err);
+        
     });
 }
     exports.getEditProduct = (req, res, next) => {
