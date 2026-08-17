@@ -22,7 +22,7 @@ exports.postAddProduct = (req, res, next) => {
 
 
 exports.getProducts = (req, res, next) => {
-    Product.find().select("title imageUrl price description -_id").populate("userId","name email").then((products) => {
+    Product.find().select("title imageUrl price description").populate("userId","name email").then((products) => {
         res.render("admin/products", { prods: products, pageTitle: "Admin Products", path: "/admin/products", });
     }).catch((err) => {
         console.log(err);
