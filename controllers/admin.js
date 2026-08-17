@@ -1,5 +1,4 @@
 
-const ObjectId = require("mongodb").ObjectId;
 const Product = require("../models/products");
 exports.getAddProduct = (req, res, next) => {
     res.status(200).render("admin/edit-product", { pageTitle: "Add Product", path: "/admin/add-product",editing:false});
@@ -34,6 +33,7 @@ exports.postEditProduct = (req, res, next) => {
     const updatedImageUrl = req.body.imageurl;
     const updatedPrice = req.body.price;
     const updatedDescription = req.body.description;
+    
     Product.findById(prodId).then((product) => {
         product.title = updatedTitle;
         product.imageUrl = updatedImageUrl;
@@ -44,15 +44,18 @@ exports.postEditProduct = (req, res, next) => {
         res.redirect("/admin/products");
     }).catch((err) => {
         console.log(err);
+        
     });
 }
 exports.postDeleteProduct = (req, res, next) => {
     const prodId = req.body.productId;
+    
     Product.findByIdAndDelete(prodId).then((product) => {
         console.log("deleted");
         res.redirect("/admin/products");
     }).catch((err) => {
         console.log(err);
+        
     });
 }
     exports.getEditProduct = (req, res, next) => {
