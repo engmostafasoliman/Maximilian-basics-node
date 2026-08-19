@@ -19,6 +19,7 @@ body {
 .main-header__nav {
     display: flex;
     align-items: center;
+    
 }
 
 .main-header__item {
@@ -75,6 +76,7 @@ main {
     overflow: hidden;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
 
 .product-item:hover {
     transform: translateY(-6px);
